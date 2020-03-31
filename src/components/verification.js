@@ -10,16 +10,20 @@ import DialogTitle from "@material-ui/core/DialogTitle"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const VerificationDialog = ({ isVerified, setVerification }) => {
+const emailMap = process.env.ACESSS_MAP || ""
+
+const VerificationDialog = ({ isVerified, setVerification, setLinks }) => {
   const [message, setMessage] = useState("")
   const [userInput, setUserInput] = useState("")
 
   const handleVerification = () => {
-    if (userInput === "824") {
+    const parsedEmailMap = JSON.parse(emailMap)
+    if (Object.keys(parsedEmailMap).includes(userInput)) {
+      setLinks(parsedEmailMap[userInput])
       return setVerification(true)
     } else {
       return setMessage(
-        "Oops! Incorrect! Try again or contact J/S for the code"
+        "Oops! This email wasn't registered with us. Please use another one, or reach out to J/S for help!"
       )
     }
   }
@@ -38,10 +42,10 @@ const VerificationDialog = ({ isVerified, setVerification }) => {
             margin="dense"
             id="password"
             label="Type here"
-            type="password"
+            type="text"
             error={!!message}
             helperText={message}
-            onChange={e => setUserInput(e.target.value)}
+            onChange={e => setUserInput(e.target.value.toLowerCase().trim())}
             fullWidth
           />
         </DialogContent>
@@ -66,6 +70,7 @@ VerificationDialog.defaultProps = {
 VerificationDialog.propTypes = {
   isVerified: PropTypes.bool,
   setVerification: PropTypes.func,
+  setLinks: PropTypes.func,
 }
 
 export default VerificationDialog
