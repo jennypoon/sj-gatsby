@@ -2,19 +2,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { withStyles } from "@material-ui/core/styles"
-
+import Grid from "@material-ui/core/Grid"
 import Header from "./header"
-import "./layout.css"
 
 const styles = () => ({
   body: {
-    margin: `0 auto`,
-    maxWidth: 960,
-    padding: `0 1.0875rem 1.45rem`,
+    padding: 50,
   },
 })
 
-const Layout = ({ children, classes }) => {
+const Layout = ({ children, classes, links, isVerified }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,14 +21,19 @@ const Layout = ({ children, classes }) => {
       }
     }
   `)
-
+  if (!isVerified) {
+    return (
+      <Grid container className={classes.body}>
+        <main>{children}</main>
+      </Grid>
+    )
+  }
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div className={classes.body}>
+      <Grid container className={classes.body}>
+        <Header siteTitle={data.site.siteMetadata.title} links={links} />
         <main>{children}</main>
-        <footer>TO DO FOOTER</footer>
-      </div>
+      </Grid>
     </>
   )
 }

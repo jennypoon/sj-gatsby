@@ -3,12 +3,7 @@ import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 
-const styles = () => ({
-  button: {
-    textTransform: "none",
-    margin: 5,
-  },
-})
+const styles = () => ({})
 
 const websiteMap = process.env.WEBSITE_MAP || ""
 const parsedWebsiteMap = JSON.parse(websiteMap)
@@ -19,9 +14,8 @@ const renderButtons = (links = [], classes) =>
     if (linkDetails) {
       return (
         <Button
-          variant="outlined"
+          variant="text"
           key={linkDetails.label}
-          color="primary"
           target="_blank"
           rel="noreferrer"
           className={classes.button}
@@ -31,14 +25,14 @@ const renderButtons = (links = [], classes) =>
         </Button>
       )
     }
+    return null
   })
 
 const Buttons = ({ classes, links }) => (
   <>
     {renderButtons(links, classes)}
     <Button
-      color="secondary"
-      variant="outlined"
+      variant="text"
       className={classes.button}
       target="_blank"
       rel="noreferrer"

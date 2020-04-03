@@ -38,7 +38,6 @@ const VerificationDialog = ({ isVerified, setVerification, setLinks }) => {
             Please enter the secret code to view this website:
           </DialogContentText>
           <TextField
-            autoFocus
             margin="dense"
             id="password"
             label="Type here"
