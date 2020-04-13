@@ -73,3 +73,5 @@ yarn.lock
 package-lock.json
 .env.*
 emails.js
+*/images
+*/gifs

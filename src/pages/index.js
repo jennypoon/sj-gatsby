@@ -1,86 +1,66 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import moment from "moment"
-import { withStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Youtube from "../components/youtube"
-import VerificationDialog from "../components/verification"
 import Image from "../components/image"
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: "Raleway, sans-serif",
-    fontWeight: 100,
-    fontWeightRegular: 100,
-    fontWeightLight: 100,
-  },
-  overrides: {
-    MuiButton: {
-      text: {
-        textTransform: "uppercase",
-        color: "#045B13",
-      },
-    },
-    Typography: {
-      h3: {
-        fontWeight: 100,
-      },
-    },
-  },
-})
-
-const styles = () => ({
-  button: {
-    textTransform: "none",
-  },
-})
-
-const IndexPage = ({ classes }) => {
-  const [isVerified, setVerification] = useState(false)
-  const [links, setLinks] = useState([])
-
-  if (!isVerified) {
-    return (
-      <VerificationDialog
-        isVerified={isVerified}
-        setVerification={setVerification}
-        setLinks={setLinks}
-      />
-    )
-  }
-
+const IndexPage = () => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <Layout links={links} isVerified={isVerified}>
-        <SEO title="♡" />
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h5">
-              It's been {moment().diff(moment("2019-08-24"), "days")} Days. Can
-              you believe it?
-            </Typography>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <Typography variant="body1">
-              Now that we're all in quaratine, got nothing else to do but
-              finally build this new website out to share the photos taken
-            </Typography>
-          </Grid>
-          <Grid item sm={6} xs={10}>
-            <Image alt="Gatsby in Space" filename="gatsby-astronaut.png" />
-          </Grid>
-        </Grid>
-        <Youtube youtubeId={process.env.YOUTUBE_FRIEND_ID} />
+    <Layout>
+      <SEO title="♡" />
+      <Grid container spacing={8}>
+        <Grid item sm={5} xs={12}>
+          <Typography variant="h5">
+            It's been {moment().diff(moment("2019-08-24"), "days")} Days. Can
+            you believe it?
+          </Typography>
+          <Typography variant="body1" paragraph={true}>
+            Now that we're all in quaratine, Jenny has finally been forced to
+            sit down and build out this new website so we can share the photos
+            and happy memories from our wedding.
+          </Typography>
+          <Typography variant="body1" paragraph={true}>
+            Firstly, we wanted to say THANK YOU again, to everyone that attended
+            our special day. We are truly blessed and so thankful. It was so
+            special to have our families travel across oceans to witness our
+            marriage. It was actually the largest Poon Family gathering that has
+            ever happened, which brought a tearful reunion.
+          </Typography>
 
-        <Link to="/page-2/">Go to page 2</Link>
-      </Layout>
-    </MuiThemeProvider>
+          <Typography variant="h5">What's life like now? </Typography>
+          <Typography variant="body1" paragraph={true}>
+            Life as Newleyweds hasn't been all rainbow and butterflies. Jenny
+            had to leave the comfort of her home and build a new one with
+            Stephen in his basement suite. Jenny would pretty much visit her
+            parent's house everyday - either to grab something she forgot, have
+            dinner with her family, or just because she missed her familiar
+            surroundings. Three furniture arrangement sessions, endless trips
+            back and forth, and two mattresses later ... Jenny is finally
+            settled in! It's been great building a new daily routine together
+            and learning about each other's habits! We're not sick of each other
+            yet, but our true test will come if this quarantine lasts any
+            longer...
+          </Typography>
+          <Typography variant="h5">What's Next?</Typography>
+          <Typography variant="body1" paragraph={true}>
+            Well... we were supposed to go to Iceland for our honeymoon in June.
+            But due to Covid-19, that has now been postponed. All we can really
+            do now is continue spending quality time together and slowly furnish
+            our new place!
+          </Typography>
+        </Grid>
+        <Grid item sm={7} xs={10}>
+          <Image alt="At the pier" filename="sj-pier" />
+        </Grid>
+      </Grid>
+
+      <Link to="/memories/">Check out our favorite memories</Link>
+    </Layout>
   )
 }
 
-export default withStyles(styles)(IndexPage)
+export default IndexPage

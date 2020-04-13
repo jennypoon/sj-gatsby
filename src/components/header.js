@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography"
 import Buttons from "./buttons"
 import Image from "./image"
 
-const styles = theme => {
+const styles = () => {
   return {
     header: {
       background: `white`,
@@ -43,7 +43,7 @@ const Header = ({ siteTitle, classes, links }) => (
       <Buttons links={links} />
     </Grid>
     <Grid item xs={12}>
-      <Image alt="wedding place holder" filename="wedding_placeholder.jpg" />
+      <Image alt="Street Crossing" filename="sj-street" />
     </Grid>
   </Grid>
 )

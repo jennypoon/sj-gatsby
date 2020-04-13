@@ -3,7 +3,12 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import { MuiThemeProvider } from "@material-ui/core/styles"
+
+import { theme } from "../theme"
 import Header from "./header"
+import VerificationDialog from "./verification"
+import { myContext } from "../../provider"
 
 const styles = () => ({
   body: {
@@ -11,7 +16,7 @@ const styles = () => ({
   },
 })
 
-const Layout = ({ children, classes, links, isVerified }) => {
+const Layout = ({ children, classes }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -21,20 +26,31 @@ const Layout = ({ children, classes, links, isVerified }) => {
       }
     }
   `)
-  if (!isVerified) {
-    return (
-      <Grid container className={classes.body}>
-        <main>{children}</main>
-      </Grid>
-    )
-  }
+
   return (
-    <>
-      <Grid container className={classes.body}>
-        <Header siteTitle={data.site.siteMetadata.title} links={links} />
-        <main>{children}</main>
-      </Grid>
-    </>
+    <myContext.Consumer>
+      {context =>
+        context.isVerified ? (
+          <MuiThemeProvider theme={theme}>
+            <Grid container className={classes.body}>
+              <Header
+                siteTitle={data.site.siteMetadata.title}
+                links={context.links}
+              />
+              <main>{children}</main>
+            </Grid>
+          </MuiThemeProvider>
+        ) : (
+          <Grid container className={classes.body}>
+            <VerificationDialog
+              isVerified={context.isVerified}
+              setVerification={context.setVerification}
+              setLinks={context.setLinks}
+            />
+          </Grid>
+        )
+      }
+    </myContext.Consumer>
   )
 }
 

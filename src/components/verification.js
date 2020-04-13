@@ -7,7 +7,9 @@ import DialogActions from "@material-ui/core/DialogActions"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
-import Layout from "../components/layout"
+import { MuiThemeProvider } from "@material-ui/core/styles"
+
+import { theme } from "../theme"
 import SEO from "../components/seo"
 
 const emailMap = process.env.ACESSS_MAP || ""
@@ -17,7 +19,10 @@ const VerificationDialog = ({ isVerified, setVerification, setLinks }) => {
   const [userInput, setUserInput] = useState("")
 
   const handleVerification = () => {
-    const parsedEmailMap = JSON.parse(emailMap)
+    if (userInput.length < 1 || !userInput.includes("@")) {
+      return setMessage("Please enter a valid email address")
+    }
+    const parsedEmailMap = JSON.parse(emailMap) || {}
     if (Object.keys(parsedEmailMap).includes(userInput)) {
       setLinks(parsedEmailMap[userInput])
       return setVerification(true)
@@ -29,7 +34,7 @@ const VerificationDialog = ({ isVerified, setVerification, setLinks }) => {
   }
 
   return (
-    <Layout>
+    <MuiThemeProvider theme={theme}>
       <SEO title="Login" />
       <Dialog fullWidth open={!isVerified} onClose={handleVerification}>
         <DialogTitle id="verification">S + J</DialogTitle>
@@ -49,16 +54,12 @@ const VerificationDialog = ({ isVerified, setVerification, setLinks }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button
-            variant={"contained"}
-            onClick={handleVerification}
-            color="secondary"
-          >
-            Submit
+          <Button onClick={handleVerification} style={{ margin: 10 }}>
+            Login
           </Button>
         </DialogActions>
       </Dialog>
-    </Layout>
+    </MuiThemeProvider>
   )
 }
 
