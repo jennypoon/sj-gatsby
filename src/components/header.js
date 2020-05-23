@@ -6,13 +6,12 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 
 import Buttons from "./buttons"
-import Image from "./image"
 
 const styles = () => {
   return {
     header: {
       background: `white`,
-      marginBottom: `3rem`,
+      marginBottom: `1rem`,
     },
     titleLink: {
       color: `black`,
@@ -25,11 +24,11 @@ const Header = ({ siteTitle, classes, links }) => (
   <Grid
     container
     className={classes.header}
-    justify="space-around"
+    justify="space-between"
     direction="row"
-    alignItems="flex-start"
+    alignItems="flex-end"
   >
-    <Grid item sm={9}>
+    <Grid item>
       <Link to="/" className={classes.titleLink}>
         <Typography variant="h4">{siteTitle}</Typography>
       </Link>
@@ -39,11 +38,11 @@ const Header = ({ siteTitle, classes, links }) => (
       </Typography>
     </Grid>
 
-    <Grid item sm={3}>
+    <Grid item>
       <Buttons links={links} />
     </Grid>
     <Grid item xs={12}>
-      <Image alt="Street Crossing" filename="sj-street" />
+      <hr></hr>{" "}
     </Grid>
   </Grid>
 )

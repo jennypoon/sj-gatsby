@@ -1,5 +1,6 @@
 import React from "react"
 import Button from "@material-ui/core/Button"
+import { Link } from "gatsby"
 
 const websiteMap = process.env.WEBSITE_MAP || ""
 let linkDetails
@@ -28,6 +29,12 @@ const renderButtons = (links = []) =>
 
 const Buttons = ({ links }) => (
   <>
+    <Link style={{ textDecoration: "none" }} to="/memories/">
+      <Button variant="text">Moments</Button>
+    </Link>
+    <Link style={{ textDecoration: "none" }} to="/vows/">
+      <Button variant="text">Vows</Button>
+    </Link>
     {renderButtons(links)}
     <Button
       variant="text"

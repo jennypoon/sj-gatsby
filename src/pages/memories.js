@@ -1,10 +1,11 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link as GatsbyLink } from "gatsby"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
+import Link from "@material-ui/core/Link"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -18,6 +19,17 @@ const FavMemories = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5">Our Favorite Memories</Typography>
+          <Typography variant="body1">
+            If you'd like to share the photos you've taken, make sure to upload
+            them{" "}
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              href={process.env.WEBSITE_UPLOAD}
+            >
+              here!
+            </Link>
+          </Typography>
         </Grid>
         <Grid item xs={4}>
           <Card>
@@ -160,8 +172,69 @@ const FavMemories = () => {
             Derek killing it during the Mother/Father Dance!
           </Typography>
         </Grid>
+        <Grid item md={4} sm={12}>
+          <Card>
+            <CardMedia
+              src={require("../images/tea-ceremony.jpg")}
+              component="img"
+              title="Ceremony"
+            />
+
+            <CardContent>
+              <Typography gutterBottom variant="h5">
+                Tea Ceremony
+              </Typography>
+              <Typography variant="body2" component="p">
+                I never expected the tea ceremony to be so emotional. The family
+                bond and love was so evident on this day. It was an honor to get
+                a chance to serve tea to everyone on our family.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={4} sm={12}>
+          <Card>
+            <CardMedia
+              src={require("../images/ceremony-grace.jpg")}
+              component="img"
+              title="Ceremony"
+            />
+
+            <CardContent>
+              <Typography gutterBottom variant="h5">
+                Wedding Ceremony
+              </Typography>
+              <Typography variant="body2" component="p">
+                Thank you Auntie Grace for being our wedding officiant. No words
+                can describe how special this moment was for us.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item md={4} sm={12}>
+          <Typography variant="body1" paragraph={true}>
+            The photobooth was a huge hit! You can download your photobooth
+            pictures up on the Links placed in the headers
+          </Typography>
+        </Grid>
+        <Grid item md={7} sm={12}>
+          <Card>
+            <CardContent>
+              <Youtube youtubeId={process.env.YOUTUBE_FRIEND_ID} />
+              <br />
+              <Typography gutterBottom variant="h5">
+                Memories with Family
+              </Typography>
+              <Typography variant="body2" component="p">
+                It was fun watching our childhood videos on the VHS. The 90s
+                were a blast! Kudos to our dads for carrying around a giant
+                camcorder to capture these special moments.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
-      <Link to="/">Go back to the homepage</Link>
+      <GatsbyLink to="/">Go back to the homepage</GatsbyLink>
     </Layout>
   )
 }
