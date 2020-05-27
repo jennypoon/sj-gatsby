@@ -45,7 +45,11 @@ const cardComp = ({ cardTitle, cardContent, mdSize = 4, cardMedia }) => {
           <Typography gutterBottom variant="h5">
             {cardTitle}
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography
+            variant="body2"
+            style={{ whiteSpace: "pre-line" }}
+            component="p"
+          >
             {cardContent}
           </Typography>
         </CardContent>
@@ -61,8 +65,8 @@ const FavMemories = () => (
       <Grid item xs={12}>
         <Typography variant="h5">Our Favorite Memories</Typography>
         <Typography variant="body1">
-          If you'd like to share the photos you've taken, make sure to upload
-          them{" "}
+          If you'd like to share the photos/videos you've taken with us, make
+          sure to upload them{" "}
           <Link
             target="_blank"
             rel="noreferrer"
@@ -74,7 +78,13 @@ const FavMemories = () => (
       </Grid>
       {cardContent.map(moment => cardComp(moment))}
     </Grid>
-    <GatsbyLink to="/">Go back to the homepage</GatsbyLink>
+    <Grid container>
+      <GatsbyLink to="/vows/" style={{ textDecoration: "none" }}>
+        <Typography variant="body1">
+          1 year later, did we keep the promises we've made to each other?
+        </Typography>
+      </GatsbyLink>
+    </Grid>
   </Layout>
 )
 
