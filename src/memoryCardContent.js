@@ -99,7 +99,7 @@ exports.cardContent = [
   {
     cardTitle: "Tea Ceremony",
     cardContent:
-      "I never expected the tea ceremony to be so emotional. Jenny pretty much cried to every single person we served tea to, she was a complete mess LOL The family bond and love was so evident on this day. It was an honor to get a chance to serve tea to everyone on our family.",
+      "I never expected the tea ceremony to be so emotional (In this picture, Jenny's parent just sat down and Jenny turned to look at me, already tearing up and said with quivering lips: Oh boy...) Jenny pretty much cried to every single person we served tea to, she was a complete mess LOL The family bond and love was so evident on this day. It was an honor to get a chance to serve tea to everyone on our family.",
     cardMedia: [
       {
         mediaType: "img",

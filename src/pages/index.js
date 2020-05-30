@@ -3,19 +3,29 @@ import { Link } from "gatsby"
 import moment from "moment"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
+import { withStyles } from "@material-ui/core/styles"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Image from "../components/image"
 
-const IndexPage = () => (
+const styles = theme => ({
+  headerImg: {
+    marginTop: "0.5rem",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
+  },
+})
+
+const IndexPage = ({ classes }) => (
   <Layout>
     <SEO title="♡" />
     <Grid container spacing={8}>
-      <Grid item xs={12} style={{ marginTop: "0.5rem" }}>
+      <Grid item xs={12} className={classes.headerImg}>
         <Image alt="Street Crossing" filename="sj-street" />
       </Grid>
-      <Grid item sm={5} xs={12}>
+      <Grid item md={5} sm={12}>
         <Typography variant="h5">
           It's been {moment().diff(moment("2019-08-24"), "days")} Days. Can you
           believe it?
@@ -54,7 +64,7 @@ const IndexPage = () => (
           new place!
         </Typography>
       </Grid>
-      <Grid item sm={7} xs={10}>
+      <Grid item md={7} sm={12}>
         <Image alt="At the pier" filename="sj-pier" />
       </Grid>
     </Grid>
@@ -64,4 +74,4 @@ const IndexPage = () => (
   </Layout>
 )
 
-export default IndexPage
+export default withStyles(styles)(IndexPage)

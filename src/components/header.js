@@ -7,15 +7,23 @@ import Typography from "@material-ui/core/Typography"
 
 import Buttons from "./buttons"
 
-const styles = () => {
+const styles = theme => {
   return {
     header: {
       background: `white`,
       marginBottom: `1rem`,
     },
     titleLink: {
-      color: `black`,
-      textDecoration: `none`,
+      [theme.breakpoints.down("sm")]: {
+        width: "100%",
+        textAlign: "center",
+      },
+    },
+    linkButtons: {
+      [theme.breakpoints.down("sm")]: {
+        width: "100%",
+        textAlign: "center",
+      },
     },
   }
 }
@@ -28,8 +36,8 @@ const Header = ({ siteTitle, classes, links }) => (
     direction="row"
     alignItems="flex-end"
   >
-    <Grid item>
-      <Link to="/" className={classes.titleLink}>
+    <Grid item md={5} className={classes.titleLink}>
+      <Link to="/" style={{ color: `black`, textDecoration: `none` }}>
         <Typography variant="h4">{siteTitle}</Typography>
       </Link>
       <Typography variant="subtitle1">
@@ -38,7 +46,7 @@ const Header = ({ siteTitle, classes, links }) => (
       </Typography>
     </Grid>
 
-    <Grid item>
+    <Grid item className={classes.linkButtons}>
       <Buttons links={links} />
     </Grid>
     <Grid item xs={12}>

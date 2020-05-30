@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 
@@ -14,7 +13,7 @@ const Vows = () => (
       <Grid item xs={12}>
         <Typography variant="h5">Our Vows</Typography>
       </Grid>
-      <Grid item sm={6} xs={12}>
+      <Grid item md={6} xs={12}>
         <Typography variant="h5">Dear Jenny</Typography>
         <Typography variant="body1" paragraph={true}>
           We met each other at the Sun Run, I was quite curious about you <br />
@@ -70,7 +69,7 @@ const Vows = () => (
           <br />
         </Typography>
       </Grid>
-      <Grid item sm={6} xs={12}>
+      <Grid item md={6} xs={12}>
         <Typography variant="h5">Dear Stephen</Typography>
         <Typography variant="body1" paragraph={true}>
           We met each other at the Sun Run, I was quite curious about you <br />
